@@ -101,6 +101,8 @@ class PredictionService:
                 model_input = self.data_processor.create_xgb_features(normalized_data)
             else:
                 model_input = self.data_processor.create_sequence_data(normalized_data)
+                
+            logger.info(f"输入序列形状: {model_input.shape}, 序列长度: {self.settings.SEQ_LENGTH}")
             
             # 执行预测
             raw_prediction = await self.model_manager.predict_with_model(

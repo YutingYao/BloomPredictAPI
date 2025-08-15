@@ -96,7 +96,9 @@ async def root():
         "status": "运行中",
         "supported_stations": settings.SUPPORTED_STATIONS,
         "supported_models": settings.SUPPORTED_MODELS,
-        "max_predict_days": settings.MAX_PREDICT_DAYS
+        "max_predict_days": settings.MAX_PREDICT_DAYS,
+        "input_seq_length": settings.SEQ_LENGTH,
+        "model_info": "基于60天历史数据预测未来1-30天蓝藻密度增长率"
     }
 
 @app.get("/health", tags=["基础"])
@@ -275,6 +277,10 @@ async def get_supported_models():
 async def get_input_schema():
     """获取输入数据格式说明"""
     return {
+        "model_parameters": {
+            "seq_length": {"description": "输入序列长度", "default": settings.SEQ_LENGTH, "notes": "模型使用的历史数据窗口大小"},
+            "predict_days": {"description": "预测天数", "range": f"{settings.MIN_PREDICT_DAYS}-{settings.MAX_PREDICT_DAYS}", "notes": "可预测的未来天数范围"}
+        },
         "required_fields": {
             "temperature": {"description": "温度(°C)", "symbol": "T", "type": "float"},
             "oxygen": {"description": "溶解氧(mg/L)", "symbol": "O₂", "type": "float"},

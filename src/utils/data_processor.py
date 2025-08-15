@@ -8,6 +8,7 @@ import pandas as pd
 from typing import Dict, List, Any, Tuple
 from sklearn.preprocessing import MinMaxScaler
 import logging
+from src.config.settings import Settings
 
 logger = logging.getLogger(__name__)
 
@@ -16,6 +17,7 @@ class DataProcessor:
     
     def __init__(self):
         self.scalers = {}
+        self.settings = Settings()
         self.feature_order = [
             'temperature', 'pH', 'oxygen', 'permanganate', 'TN', 'conductivity',
             'turbidity', 'rain_sum', 'wind_speed_10m_max', 'shortwave_radiation_sum',
@@ -91,18 +93,22 @@ class DataProcessor:
         
         return normalized
     
-    def create_sequence_data(self, data: np.ndarray, seq_length: int = 7) -> np.ndarray:
+    def create_sequence_data(self, data: np.ndarray, seq_length: int = None) -> np.ndarray:
         """
         创建时间序列数据（用于LSTM/GRU-D/TCN模型）
         
         Args:
             data: 输入数据
-            seq_length: 序列长度
+            seq_length: 序列长度，默认使用配置中的SEQ_LENGTH（60）
             
         Returns:
             时间序列数据
         """
         try:
+            # 如果未指定序列长度，使用配置中的值
+            if seq_length is None:
+                seq_length = self.settings.SEQ_LENGTH
+                
             # 如果输入数据只有一行，重复以创建序列
             if data.shape[0] == 1:
                 # 重复当前数据作为历史序列
@@ -121,18 +127,22 @@ class DataProcessor:
             logger.error(f"创建序列数据失败: {e}")
             raise ValueError(f"序列数据处理错误: {str(e)}")
     
-    def create_xgb_features(self, data: np.ndarray, seq_length: int = 7) -> np.ndarray:
+    def create_xgb_features(self, data: np.ndarray, seq_length: int = None) -> np.ndarray:
         """
         为XGBoost模型创建特征（展平+统计特征）
         
         Args:
             data: 输入数据
-            seq_length: 序列长度
+            seq_length: 序列长度，默认使用配置中的SEQ_LENGTH（60）
             
         Returns:
             XGBoost特征数据
         """
         try:
+            # 如果未指定序列长度，使用配置中的值
+            if seq_length is None:
+                seq_length = self.settings.SEQ_LENGTH
+                
             # 创建序列数据
             sequence_data = self.create_sequence_data(data, seq_length)
             sequence_2d = sequence_data.reshape(seq_length, -1)

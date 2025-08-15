@@ -383,7 +383,7 @@ class ModelManager:
                 # 简单的预测逻辑：基于经验公式
                 base_growth = 0.1 + (temp_feature * 0.05) + (tn_feature * 0.2) + (tp_feature * 2.0)
                 
-                # 生成7天的预测值，有轻微的波动
+                # 生成预测值，有轻微的波动
                 predictions = []
                 for day in range(prediction_days):
                     # 添加时间衰减和随机波动

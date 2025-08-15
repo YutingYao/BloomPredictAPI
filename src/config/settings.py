@@ -37,8 +37,9 @@ class Settings(BaseSettings):
     SUPPORTED_MODELS: List[str] = ["lstm", "grud", "tcn", "xgboost"]
     
     # 预测设置
-    MAX_PREDICT_DAYS: int = 30
-    MIN_PREDICT_DAYS: int = 1
+    MAX_PREDICT_DAYS: int = 30  # 最大预测天数
+    MIN_PREDICT_DAYS: int = 1   # 最小预测天数
+    SEQ_LENGTH: int = 60        # 输入序列长度
     
     # 模型文件设置
     MODEL_BASE_PATH: str = "."
