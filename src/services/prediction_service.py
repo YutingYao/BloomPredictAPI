@@ -92,7 +92,8 @@ class PredictionService:
             logger.info(f"开始预测: {station}, {model_type}, {predict_days}天")
             
             # 数据预处理
-            cleaned_data = self.data_processor.validate_and_clean_data(input_data.dict())
+            input_dict = input_data.dict() if hasattr(input_data, 'dict') else input_data
+            cleaned_data = self.data_processor.validate_and_clean_data(input_dict)
             normalized_data = self.data_processor.normalize_input_data(cleaned_data, station)
             
             # 根据模型类型准备输入数据

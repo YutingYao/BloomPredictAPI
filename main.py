@@ -156,7 +156,8 @@ async def predict_algae_density(
             input_data=request.input_data
         )
         
-        logger.info(f"预测完成: 站点={request.station}, 预测值数量={len(result.prediction)}")
+        prediction_count = len(result.data.get("prediction", [])) if result.data else 0
+        logger.info(f"预测完成: 站点={request.station}, 预测值数量={prediction_count}")
         return result
         
     except ValueError as e:

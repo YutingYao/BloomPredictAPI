@@ -18,7 +18,8 @@ class DataProcessor:
         self.scalers = {}
         self.feature_order = [
             'temperature', 'pH', 'oxygen', 'permanganate', 'TN', 'conductivity',
-            'turbidity', 'rain_sum', 'wind_speed_10m_max', 'shortwave_radiation_sum'
+            'turbidity', 'rain_sum', 'wind_speed_10m_max', 'shortwave_radiation_sum',
+            'TP', 'NH'
         ]
     
     def normalize_input_data(self, data: Dict[str, float], station: str) -> np.ndarray:
@@ -75,6 +76,8 @@ class DataProcessor:
             7: (0, 100),     # rain_sum
             8: (0, 20),      # wind_speed_10m_max
             9: (0, 30),      # shortwave_radiation_sum
+            10: (0, 1),      # TP
+            11: (0, 5),      # NH
         }
         
         normalized = features.copy()

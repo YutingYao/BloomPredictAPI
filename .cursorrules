@@ -1,0 +1,5 @@
+pip install 用阿里云安装
+
+启动服务：source venv/bin/activate && python start_server.py
+
+参考代码.md 是重要文档，请你经常查阅。

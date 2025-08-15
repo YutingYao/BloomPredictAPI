@@ -43,16 +43,17 @@ class Settings(BaseSettings):
     # 模型文件设置
     MODEL_BASE_PATH: str = "."
     MODEL_FILE_PATTERNS: Dict[str, str] = {
-        "lstm": "00-lstm_model_data_{station}-去除负数.pkl",
-        "grud": "00-GRUD_model_data_{station}-去除负数.pkl", 
-        "tcn": "00-TCN_model_data_{station}-去除负数.pkl",
-        "xgboost": "00-XGB_model_data_{station}-去除负数.pkl"
+        "lstm": "models/00-lstm_model_data_{station}-去除负数.pkl",
+        "grud": "models/00-GRUD_model_data_{station}-去除负数.pkl", 
+        "tcn": "models/00-TCN_model_data_{station}-去除负数.pkl",
+        "xgboost": "models/00-XGB_model_data_{station}-去除负数.pkl"
     }
     
     # 输入特征字段
     INPUT_FEATURES: List[str] = [
         'temperature', 'pH', 'oxygen', 'permanganate', 'TN', 'conductivity',
-        'turbidity', 'rain_sum', 'wind_speed_10m_max', 'shortwave_radiation_sum'
+        'turbidity', 'rain_sum', 'wind_speed_10m_max', 'shortwave_radiation_sum',
+        'TP', 'NH'
     ]
     
     # 数据验证范围
