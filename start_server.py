@@ -10,6 +10,7 @@ import subprocess
 import argparse
 import logging
 from pathlib import Path
+import uvicorn
 
 def setup_logging():
     """设置日志"""
@@ -30,7 +31,6 @@ def check_dependencies():
     
     try:
         import fastapi
-        import uvicorn
         import torch
         import numpy
         import pandas
@@ -174,4 +174,5 @@ def main():
         return 1
 
 if __name__ == "__main__":
-    exit(main())
+    # 启动V3版本的API服务
+    uvicorn.run("main_v3:app", host="0.0.0.0", port=8000, reload=True)
