@@ -1,19 +1,266 @@
-# Environments
-.env
-.env.*
-!.env.example
-venv/
-venv.bak/
+# ===================================
+# 蓝藻预测系统 .gitignore 配置文件
+# ===================================
 
-# Python cache
+# ===============================
+# Python 相关
+# ===============================
+# 字节码文件
 __pycache__/
+*.py[cod]
+*$py.class
 *.pyc
 *.pyo
 *.pyd
 
-# IDEs
-.idea/
-.vscode/
+# 分发/打包
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
 
-# OS-specific
+# PyInstaller
+*.manifest
+*.spec
+
+# ===============================
+# 虚拟环境
+# ===============================
+.env
+.env.*
+!.env.example
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# ===============================
+# 机器学习相关
+# ===============================
+# 模型检查点和临时文件
+*.h5
+*.hdf5
+*.keras
+checkpoint/
+checkpoints/
+*.ckpt
+*.pt
+*.pth
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# 数据科学工具
+.spyderproject
+.spyproject
+
+# ===============================
+# 日志和输出文件
+# ===============================
+# 应用日志
+logs/
+*.log
+*.log.*
+
+# 测试输出和结果
+test_results/
+test_output/
+*test*results*.json
+*test*output*
+coverage.xml
+*.cover
+.coverage
+htmlcov/
+.pytest_cache/
+.cache
+
+# 性能分析
+*.prof
+*.lprof
+
+# ===============================
+# 临时文件和备份
+# ===============================
+# 系统临时文件
+*.tmp
+*.temp
+*~
+.#*
+#*#
+
+# 备份文件（可选保留特定备份）
+*.bak
+*.backup
+*.old
+*.orig
+*.swp
+*.swo
+
+# ===============================
+# IDE 和编辑器
+# ===============================
+# PyCharm
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ===============================
+# 操作系统相关
+# ===============================
+# macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# ===============================
+# 网络和安全
+# ===============================
+# SSL证书
+*.pem
+*.key
+*.crt
+*.csr
+*.cer
+*.p12
+*.pfx
+
+# API密钥和配置
+config/secrets.py
+secrets.json
+.secrets
+
+# ===============================
+# 服务和进程
+# ===============================
+# 进程ID文件
+*.pid
+*.pid.lock
+
+# 套接字文件
+*.sock
+
+# 服务文件
+*.service
+
+# ===============================
+# 缓存和索引
+# ===============================
+# 应用缓存
+.cache/
+cache/
+*.cache
+
+# 数据库
+*.db
+*.sqlite
+*.sqlite3
+
+# ===============================
+# 文档和媒体（可选）
+# ===============================
+# 大型媒体文件（如果不需要版本控制）
+# *.mp4
+# *.avi
+# *.mkv
+# *.mov
+# *.wmv
+# *.flv
+# *.webm
+
+# 大型图片（如果是临时生成的）
+# *.tiff
+# *.tif
+# *.bmp
+# *.psd
+
+# ===============================
+# 项目特定（蓝藻预测系统）
+# ===============================
+# 预测结果输出
+predictions/
+results/
+output/
+
+# 实验和调试文件
+experiments/
+debug/
+scratch/
+
+# 模型训练过程文件
+training_logs/
+tensorboard_logs/
+wandb/
+
+# 数据预处理临时文件
+preprocessed/
+processed_data/
+temp_data/
+
+# API相关
+api_test_results/
+*.response
+*.request
+
+# 配置文件（敏感信息）
+config/production.py
+config/local.py
